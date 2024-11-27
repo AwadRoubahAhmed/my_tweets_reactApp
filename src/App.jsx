@@ -49,26 +49,31 @@ function App() {
         My App Tweets
       </h1>
 
-      <form onSubmit={handleSubmit} className="flex flex-col size-52 gap-4 m-2">
-        <h4 className="text-white underline">New Tweet</h4>
-        <input
-          type="text"
-          placeholder="name"
-          name="name"
-          className="rounded-md"
-        />
-        <input
-          type="text"
-          placeholder="content"
-          name="content"
-          className="rounded-md"
-        />
-        <input
-          type="submit"
-          value="AddItems"
-          className="text-black bg-white cursor-pointer hover:bg-cyan-300 font-bold rounded-md"
-        />
-      </form>
+      <div className="text-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col size-52 gap-4 m-2"
+        >
+          <h4 className="text-white underline">New Tweet</h4>
+          <input
+            type="text"
+            placeholder="name"
+            name="name"
+            className="rounded-md"
+          />
+          <input
+            type="text"
+            placeholder="content"
+            name="content"
+            className="rounded-md"
+          />
+          <input
+            type="submit"
+            value="AddItems"
+            className="text-black bg-white cursor-pointer hover:bg-cyan-300 font-bold rounded-md"
+          />
+        </form>
+      </div>
 
       <div className="flex flex-wrap gap-6 m-8">
         {tweets.map((tweet) => {
