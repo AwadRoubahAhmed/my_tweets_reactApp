@@ -11,10 +11,13 @@ const DEFAULT_TWEET = [
 
 function App() {
   //Code JavaScript;
+
+  //State;
   const [tweets, setTweets] = useState(DEFAULT_TWEET);
 
   //const [tweetLiked, setTweetLiked] = useState(DEFAULT_TWEET.liked);
 
+  //Comportement;
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(event);
@@ -29,20 +32,27 @@ function App() {
       liked: 0,
     };
 
-    setTweets([...tweets, newTweet]);
+    addTweet(newTweet);
+  };
 
-    console.log(newTweet);
+  const addTweet = (tweet) => {
+    setTweets([...tweets, tweet]);
   };
 
   const onDelete = (tweetId) => {
     setTweets((curr) => curr.filter((tweet) => tweet.id !== tweetId));
   };
 
-  //const handleLiked = (tweetLiked) => {
-  //SsetTweetLiked((tweetLiked += 1));
-  //};
+  const onLike = (tweetId) => {
+    setTweets((curr) => {
+      const updatedTweet = curr.find((tweet) => tweet.id === tweetId);
+      updatedTweet.liked++;
+      return [...curr];
+    });
+  };
 
   //Code JSX;
+  //Affichage(render);
   return (
     <div className="App container">
       <h1 className="text-3xl underline text-center text-white mb-8 mt-4 font-sans font-bold">
@@ -87,6 +97,10 @@ function App() {
               onDelete={(id) => {
                 onDelete(id);
                 console.log("Delete", id);
+              }}
+              onLike={(id) => {
+                onLike(id);
+                console.log("Liked", id);
               }}
             ></Tweet>
           );

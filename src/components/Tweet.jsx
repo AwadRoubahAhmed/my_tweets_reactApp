@@ -1,8 +1,5 @@
-export const Tweet = ({ id, name, content, liked, onDelete, handleLiked }) => {
+export const Tweet = ({ id, name, content, liked, onDelete, onLike }) => {
   //Code JavasScript;
-  function handleLiked() {
-    console.log("Cliked !!!", name);
-  }
 
   //Code JSX;
   return (
@@ -17,7 +14,7 @@ export const Tweet = ({ id, name, content, liked, onDelete, handleLiked }) => {
       <p className="p-1 font-mono">{content}</p>
       <button
         className="bg-gray-400 text-black shadow-xl rounded-md p-0.5 mt-1"
-        onClick={() => handleLiked()}
+        onClick={() => onLike(id)}
       >
         {liked}❤️
       </button>
