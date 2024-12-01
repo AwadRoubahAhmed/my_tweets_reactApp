@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tweet } from "./components/Tweet";
 import "./index.css";
+import TweetForm from "./components/TweetForm";
 
 const DEFAULT_TWEET = [
   { id: 0, name: "Sabrina", content: "Je vais bien !", liked: 1000 },
@@ -9,26 +10,18 @@ const DEFAULT_TWEET = [
   { id: 3, name: "Zakia", content: "Vraiment Fun !", liked: 18 },
 ];
 
-function App() {
+export default function App() {
   //Code JavaScript;
 
-  //State;
+  //State
   const [tweets, setTweets] = useState(DEFAULT_TWEET);
 
-  //const [tweetLiked, setTweetLiked] = useState(DEFAULT_TWEET.liked);
-
-  //Comportement;
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(event);
-
-    const name = event.target.name.value;
-    const content = event.target.content.value;
-
+  //Comportement
+  const handleSubmit = (tweet) => {
     const newTweet = {
       id: tweets[tweets.length - 1]?.id + 1 ?? 0,
-      name,
-      content,
+      name: tweet.name,
+      content: tweet.content,
       liked: 0,
     };
 
@@ -52,38 +45,17 @@ function App() {
   };
 
   //Code JSX;
-  //Affichage(render);
+
+  //Affichage(render)
   return (
     <div className="App container">
       <h1 className="text-3xl underline text-center text-white mb-8 mt-4 font-sans font-bold">
         My App Tweets
       </h1>
 
-      <div className="text-center">
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col size-52 gap-4 m-2"
-        >
-          <h4 className="text-white underline">New Tweet</h4>
-          <input
-            type="text"
-            placeholder="name"
-            name="name"
-            className="rounded-md"
-          />
-          <input
-            type="text"
-            placeholder="content"
-            name="content"
-            className="rounded-md"
-          />
-          <input
-            type="submit"
-            value="AddItems"
-            className="text-black bg-white cursor-pointer hover:bg-cyan-300 font-bold rounded-md"
-          />
-        </form>
-      </div>
+      <TweetForm onSubmit={handleSubmit} />
+
+      {/*-------------------------------------------------------------*/}
 
       <div className="flex flex-wrap gap-6 m-8">
         {tweets.map((tweet) => {
@@ -109,5 +81,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
